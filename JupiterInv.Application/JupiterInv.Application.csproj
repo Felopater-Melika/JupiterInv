@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\JupiterInv.Core\JupiterInv.Core.csproj" />
+    </ItemGroup>
+    
+    <ItemGroup>
+        <Folder Include="Dtos\" />
+        <Folder Include="Extensions\" />
+        <Folder Include="Profiles\" />
+        <Folder Include="Schemas\" />
+        <Folder Include="Services\" />
+        <Folder Include="Types\" />
+        <Folder Include="Validators\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="AutoMapper" Version="12.0.1" />
+      <PackageReference Include="FluentValidation" Version="11.7.1" />
+    </ItemGroup>
+
+</Project>
