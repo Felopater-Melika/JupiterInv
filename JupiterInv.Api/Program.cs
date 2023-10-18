@@ -5,6 +5,7 @@ using JupiterInv.Core.Entities;
 using JupiterInv.Infrastructure.Database;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Serilog;
 using Serilog.Sinks.SystemConsole.Themes;
@@ -21,6 +22,7 @@ ConfigureGraphQL(builder);
 ConfigureIdentity(builder);
 
 var app = builder.Build();
+
 
 ConfigureMiddleware(app);
 
@@ -47,8 +49,14 @@ void ConfigureServices(WebApplicationBuilder servicesBuilder)
 
 void ConfigureDatabase(WebApplicationBuilder servicesBuilder)
 {
-    servicesBuilder.Services.AddTransient<IDbConnection>(_ => 
-        new DatabaseConnectionFactory(servicesBuilder.Configuration.GetConnectionString("DefaultConnection")).GetConnection());
+ 
+
+    servicesBuilder.Services.AddDbContext<AppDbContext>(options =>
+        options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+    servicesBuilder.Services.AddIdentity<User, Role>()
+        .AddEntityFrameworkStores<AppDbContext>()
+        .AddDefaultTokenProviders();
 }
 
 void ConfigureAutoMapper(WebApplicationBuilder servicesBuilder)

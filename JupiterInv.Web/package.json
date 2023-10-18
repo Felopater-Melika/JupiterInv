@@ -10,6 +10,7 @@
     "relay": "relay-compiler --src ./src --schema ./src/schema.graphql --extensions ts tsx --language typescript --artifactDirectory ./src/__generated__"
   },
   "dependencies": {
+    "@formkit/auto-animate": "^0.8.0",
     "@hookform/resolvers": "^3.3.2",
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-slot": "^1.0.2",
